@@ -183,6 +183,10 @@
 .Records-star:hover {
     color: #ffcc33;
 }
+.Records-more, .Records-more:visited {
+    color: rgb(83,85,84);
+	text-decoration: none;
+}
 .Records-more:hover {
     color: #038543;
 }

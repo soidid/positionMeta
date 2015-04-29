@@ -9,6 +9,7 @@ function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
         results = regex.exec(location.search);
+    console.log(location.search);
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
@@ -94,8 +95,9 @@ var Records = React.createClass({
               "Records-opinion": true,
               "is-for": item.opinion === '贊成',
               "is-against": item.opinion === '反對',
-              "unclear": item.opinion === '不明確'
+              "is-unclear": item.opinion === '不明確'
             });
+            var singlePostURL = "#post?q="+item.id;
 
             return (
                 <div className="Records-entry"
@@ -115,7 +117,9 @@ var Records = React.createClass({
                         <span className="Records-star">★ {item.trustVote}</span>  
                       </div>
                       <div className="Records-actionItem">
-                        <span className="Records-more">more</span>  
+                        <a className="Records-more"
+                           href={singlePostURL}
+                           target="_blank">more</a>  
                       </div>
                     </div>
                     

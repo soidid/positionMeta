@@ -1,0 +1,138 @@
+
+.SinplePost-entry {
+	display: inline-block;
+	border: 1px solid rgb(220,220,220);
+	width: 100%;
+	vertical-align: top;
+	margin: 4px;
+	cursor: pointer;
+	text-align: left;
+	background: white;
+
+	text-decoration: none;
+	color: rgb(53,55,54);
+}
+.SinplePost-entryTitle {
+    padding: 4px 10px 4px 10px;
+    font-weight: 800;
+    font-size: 18px;
+    
+}
+.SinplePost-alternative {
+	padding: 4px 10px 4px 10px;
+    font-weight: 800;
+    font-size: 18px;
+    margin: 20px 0;
+    
+    line-height: 2;
+}
+.SinplePost-button {
+	color: white;
+    background: #E7B632;
+    border-radius: 20px;
+    display: inline-block;
+    padding: 10px 10px;
+    box-shadow: 2px 2px 1px 0 rgba(0,0,0,0.2);
+    margin: 0px 10px 30px 0px;
+    cursor: pointer;
+}
+.SinplePost-button:hover {
+	box-shadow: 2px 2px 1px 0 rgba(0,0,0,0.4);
+}
+
+.SinplePost-opinion {
+	//color: white;
+	font-weight: 800;
+	display: inline-block;
+	vertical-align: top;
+	padding-top: 8px;
+	margin-left: 3px;
+}
+.SinplePost-opinion.is-for {
+	color: #3EA869;
+}
+.SinplePost-opinion.is-against {
+	color: #C62F20;
+}
+.SinplePost-opinion.is-unclear {
+	background: gray;
+}
+.SinplePost-voteNumbers.is-for {
+	background: #3EA869;
+	color: white;
+	font-size: 16px;
+	border-radius: 50%;
+	padding: 2px 4px;
+
+	text-align: center;
+	min-width: 24px;
+	display: inline-block;
+
+}
+.SinplePost-voteNumbers.is-against {
+	background: #C62F20;
+	color: white;
+	font-size: 16px;
+	border-radius: 50%;
+	padding: 2px 4px;
+
+	text-align: center;
+	min-width: 24px;
+	display: inline-block;
+}
+.SinplePost-voteNumbers.is-unclear {
+	background: gray;
+	color: white;
+	font-size: 16px;
+	border-radius: 50%;
+	padding: 2px 4px;
+
+	text-align: center;
+	min-width: 24px;
+	display: inline-block;
+}
+.SinplePost-quote {
+	font-family: Georgia;
+    margin: 4px 5px;
+    padding: 4px 10px;
+    quotes: "\201C""\201D""\2018""\2019";
+}
+.SinplePost-quote:before {
+	color: #ccc;
+    content: open-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+}
+.SinplePost-info {
+	padding: 10px 20px;
+	color: gray;
+	font-size: 14px;
+}
+.SinplePost-action {
+	border-top: 1px dotted rgb(220,220,220);
+}
+.SinplePost-actionItem {
+	padding: 10px 20px;
+	color: gray;
+	font-size: 14px;
+	display: inline-block;
+}
+.SinplePost-star, .SinplePost-more {
+	cursor: pointer;
+	font-weight: 800;
+}
+.SinplePost-star:hover {
+    color: #ffcc33;
+}
+.SinplePost-more:hover {
+    color: #038543;
+}
+.SinplePost-pdf, .SinplePost-pdf:visited {
+	color: rgb(83,85,84);
+	text-decoration: none;
+}
+.SinplePost-pdf:hover {
+	color: #28ABE3;
+}

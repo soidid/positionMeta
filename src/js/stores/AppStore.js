@@ -27,6 +27,7 @@ lyInfo.map((value, key)=>{
 console.log(_legiData);
 
 var _data = [];
+var _indexedById = {};
 
 //========================================================================
 //
@@ -42,6 +43,10 @@ var AppStore = merge(EventEmitter.prototype, {
 
   getPosition: function() {
     return _legiData;
+  },
+
+  getIndexedData: function(){
+    return _indexedById;
   },
 
   //為什麼這個要定義成 public ?
@@ -84,7 +89,8 @@ function parseData (argument) {
             var anEntry = {};
             var name = value.gsx$name.$t;
             anEntry.name = name;
-            anEntry.id = value.gsx$id.$t;
+            var id = value.gsx$id.$t;
+            anEntry.id = id;
             var date = value.gsx$date.$t;;
             anEntry.date = date;
             //split date to : year, month, data, original format: yyyy-mm-dd
@@ -98,6 +104,9 @@ function parseData (argument) {
             anEntry.link = value.gsx$link.$t;
            
             anEntry.trustVote = value.gsx$trustvote.$t;
+
+            //記錄到 by id 的資料中
+            _indexedById[id] = anEntry;
 
             //紀錄到立法委員的資料中
             if(!_legiData[name].entries){
@@ -158,7 +167,7 @@ function parseData (argument) {
                 }
 
             }
-            console.log(name+":"+_legiData[name].position);
+            //console.log(name+":"+_legiData[name].position);
 
         }
        
