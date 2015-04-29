@@ -132,6 +132,8 @@ var Records = React.createClass({
           {entries}
         </div> : "";
         var toggleText = (shouldYearExpand[year.year]===true)? "折疊" : "展開";
+        if(entriesCount.yearAll === 0)
+          toggleText = "";
         
        return (
             <div className="Records-year"
@@ -142,8 +144,7 @@ var Records = React.createClass({
                    <div className="Records-yearTitle">{year.year}</div>
                    <div className="Records-yearSum">
                         <span className="Records-voteNumbers">{entriesCount.yearAll}</span> 個相關表態
-                        <div className="Records-yearToggle" 
-                             onClick={boundToggleYear}>{toggleText}</div>
+                        <div className="Records-yearToggle">{toggleText}</div>
                    </div>
                 </div>
                 <div className="Records-yearEntries">
