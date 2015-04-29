@@ -1,0 +1,192 @@
+.Records {
+	text-align: center;
+	border-top: 1px solid rgb(220,220,220);
+	margin: 0 auto;
+	padding: 0 10px;
+}
+@media screen and (min-width: 600px){
+	.Records {
+		max-width: 600px;
+	}
+}
+.Records-title {
+	font-size: 20px;
+	font-weight: 800;
+	margin: 14px 0 10px 0;
+}
+.Records-description {
+	margin-bottom: 30px;
+}
+.Records-year {
+	text-align: left;
+	border-left: 1px solid rgb(153,155,154);
+    padding-top: 20px;
+}
+.Records-yearHeader {
+	position: relative;
+
+}
+.Records-yearUnit {
+	position: absolute;
+	top: 8px;
+	left: -4px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: #880013;
+
+}
+.Records-yearTitle {
+	text-align: left;
+	font-weight: 800;
+	padding-left: 10px;
+}
+
+/* O 次表決結果 */
+.Records-yearSum {
+	padding: 10px;
+	width: 100%;
+	background: rgb(220,220,220);
+	cursor: pointer;
+}
+.Records-yearSum:hover {
+	box-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+}
+/* x 次支持 */
+.Records-voteNumbers {
+    font-size: 18px;
+    font-weight: 800;
+}
+.Records-yearToggle {
+	text-align: right;
+	margin-top: 10px;
+	font-size: 14px;
+	text-decoration: underline;
+}
+@media screen and (min-width: 600px){
+	.Records-yearToggle {
+		float: right;
+		padding: 0 20px;
+		margin: 0;
+		font-size: 16px;
+		text-decoration: none;
+    }
+
+}
+
+.Records-yearEntries {
+	padding-top: 4px;
+}
+
+.Records-entry {
+	display: inline-block;
+	border: 1px solid rgb(220,220,220);
+	width: 100%;
+	vertical-align: top;
+	margin: 4px;
+	cursor: pointer;
+	text-align: left;
+	background: white;
+
+	text-decoration: none;
+	color: rgb(53,55,54);
+}
+.Records-entryTitle {
+    padding: 4px 10px 4px 10px;
+    font-weight: 800;
+    font-size: 18px;
+    
+}
+.Records-opinion {
+	//color: white;
+	font-weight: 800;
+	display: inline-block;
+	vertical-align: top;
+	padding-top: 8px;
+	margin-left: 3px;
+}
+.Records-opinion.is-for {
+	color: #3EA869;
+}
+.Records-opinion.is-against {
+	color: #C62F20;
+}
+.Records-opinion.is-unclear {
+	background: gray;
+}
+.Records-voteNumbers.is-for {
+	background: #3EA869;
+	color: white;
+	font-size: 16px;
+	border-radius: 50%;
+	padding: 2px 4px;
+
+	text-align: center;
+	min-width: 24px;
+	display: inline-block;
+
+}
+.Records-voteNumbers.is-against {
+	background: #C62F20;
+	color: white;
+	font-size: 16px;
+	border-radius: 50%;
+	padding: 2px 4px;
+
+	text-align: center;
+	min-width: 24px;
+	display: inline-block;
+}
+.Records-voteNumbers.is-unclear {
+	background: gray;
+	color: white;
+	font-size: 16px;
+	border-radius: 50%;
+	padding: 2px 4px;
+
+	text-align: center;
+	min-width: 24px;
+	display: inline-block;
+}
+.Records-quote {
+	font-family: Georgia;
+    margin: 4px 5px;
+    padding: 4px 10px;
+    quotes: "\201C""\201D""\2018""\2019";
+}
+.Records-quote:before {
+	color: #ccc;
+    content: open-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+}
+.Records-info {
+	padding: 10px 20px;
+	color: gray;
+	font-size: 14px;
+}
+.Records-action {
+	border-top: 1px dotted rgb(220,220,220);
+}
+.Records-actionItem {
+	padding: 10px 20px;
+	color: gray;
+	font-size: 14px;
+	display: inline-block;
+}
+.Records-star, .Records-more {
+	cursor: pointer;
+	font-weight: 800;
+}
+.Records-star:hover {
+    color: #ffcc33;
+}
+.Records-more:hover {
+    color: #038543;
+}
+
+
+
+

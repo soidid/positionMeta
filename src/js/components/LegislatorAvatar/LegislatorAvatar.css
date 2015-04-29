@@ -1,0 +1,19 @@
+.LegislatorAvatar {
+	display: inline-block;
+	
+}
+.LegislatorAvatar-avatar {
+    width: 40px;
+    height: 40px;
+    display: block;
+    margin: 0 auto;
+    border: 2px solid rgb(220,220,220);
+    border-radius: 50%;
+    display: inline-block;
+} 
+.LegislatorAvatar-name {
+	display: inline-block;
+	vertical-align: top;
+	padding-top: 8px;
+	margin-left: 5px;
+}
