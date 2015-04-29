@@ -17,17 +17,14 @@ var request = require('superagent');
 // Private vars & method
 
 // 定義 store 需要的變數和 method，外界看不到
-var _refData = {};
-// 建立「姓名」-> 政黨（英文）的對照資料
-var temp = require("../../data/ly-info").data;
-temp.map((item, key)=>{
-    _refData[item.name] = item;
+var _legiData = {};
+
+var lyInfo = require("../../data/ly-info").data;
+lyInfo.map((value, key)=>{
+    _legiData[value.name] = value;
+    
 });
-_refData["國民黨團"] = { "party_eng" : "KMT" };
-_refData["民進黨團"] = { "party_eng" : "DPP" };
-_refData["台聯黨團"] = { "party_eng" : "TSU" };
-_refData["親民黨團"] = { "party_eng" : "PFP" };
-//console.log(_refData);
+console.log(_legiData);
 
 var _data = [];
 
@@ -41,6 +38,10 @@ var AppStore = merge(EventEmitter.prototype, {
 
   getData: function() {
     return _data;
+  },
+
+  getPosition: function() {
+    return _legiData;
   },
 
   //為什麼這個要定義成 public ?
@@ -62,85 +63,6 @@ var AppStore = merge(EventEmitter.prototype, {
 //========================================================================
 //
 // Load Data
-var iso3166tw = {
-    "CHA": "彰化縣",
-    "CYI": "嘉義市",
-    "CYQ": "嘉義縣",
-    "HSQ": "新竹縣",
-    "HSZ": "新竹市",
-    "HUA": "花蓮縣",
-    "ILA": "宜蘭縣",
-    "KEE": "基隆市",
-    "KHH": "高雄市",
-    "KHQ": "高雄市",
-    "MIA": "苗栗縣",
-    "NAN": "南投縣",
-    "PEN": "澎湖縣",
-    "PIF": "屏東縣",
-    "TAO": "桃園縣",
-    "TNN": "台南市",
-    "TNQ": "台南市",
-    "TPE": "台北市",
-    "TPQ": "新北市",
-    "TTT": "台東縣",
-    "TXG": "台中市",
-    "TXQ": "台中市",
-    "YUN": "雲林縣",
-    "JME": "金門縣",
-    "LJF": "連江縣"
-    };
-function constituency_area_parser (constituency) {
-    switch (constituency[0]) {
-
-        case 'proportional':
-            return '全國不分區';
-            break;
-        case 'aborigine':
-            return '山地原住民';
-            break;
-        case 'foreign':
-            return '僑居國外國民';
-            break;
-        default:
-            if (constituency[0] in iso3166tw) {
-                result = iso3166tw[constituency[0]];
-            } else {
-                result = constituency[0] + '<br>' + constituency[1];
-            }
-            return result;
-            break;
-        
-    }
-
-}
-function constituency_parser (constituency) {
-    switch (constituency[0]) {
-
-        case 'proportional':
-            return '全國不分區';
-            break;
-        case 'aborigine':
-            return '山地原住民';
-            break;
-        case 'foreign':
-            return '僑居國外國民';
-            break;
-        default:
-            if (constituency[0] in iso3166tw) {
-                if (constituency[1] == 0) {
-                    result = iso3166tw[constituency[0]];
-                } else {
-                    result = iso3166tw[constituency[0]] + '第' + constituency[1] + '選區';
-                }
-            } else {
-                result = constituency[0] + '<br>' + constituency[1];
-            }
-            return result;
-            break;
-        
-    }
-
-}
 function parseData (argument) {
   
   // GET Position Data from Google Spreadsheets
@@ -160,8 +82,9 @@ function parseData (argument) {
             //console.log(value);
 
             var anEntry = {};
-            
-            anEntry.name = value.gsx$name.$t;
+            var name = value.gsx$name.$t;
+            anEntry.name = name;
+            anEntry.id = value.gsx$id.$t;
             var date = value.gsx$date.$t;;
             anEntry.date = date;
             //split date to : year, month, data, original format: yyyy-mm-dd
@@ -176,7 +99,25 @@ function parseData (argument) {
            
             anEntry.trustVote = value.gsx$trustvote.$t;
 
-            //_data.push(anEntry);
+            //紀錄到立法委員的資料中
+            if(!_legiData[name].entries){
+                _legiData[name].entries = [];
+                _legiData[name].forTotal = 0;
+                _legiData[name].againstTotal = 0;
+                _legiData[name].unclearTotal = 0;
+            }
+            _legiData[name].entries.push(anEntry);
+            switch(anEntry.opinion){
+                case '贊成':
+                     _legiData[name].forTotal++;
+                     break;
+                case '反對':
+                     _legiData[name].againstTotal++;
+                     break;
+                case '不明確':
+                     _legiData[name].unclearTotal++;
+                     break;
+            }
 
             // group by year
             if(!_temp[anEntry.year])
@@ -193,10 +134,38 @@ function parseData (argument) {
                 "entries":_temp[key]
               });
         }
+
+        //統計每個立委的 entry 決定立場
+        for(var name in _legiData){
+
+            if(!_legiData[name].entries){
+                _legiData[name].position = '未表態';
+            }else{
+                var {forTotal, againstTotal, unclearTotal} = _legiData[name];
+                
+                if(forTotal >= Math.max(againstTotal, unclearTotal)){
+                    _legiData[name].position = '贊成';
+                    _legiData[name].positionCount = forTotal;
+
+                }else if(againstTotal >= Math.max(forTotal, unclearTotal)){
+                    _legiData[name].position = '反對';
+                    _legiData[name].positionCount = againstTotal;
+
+                }else{
+                    _legiData[name].position = '不明確';
+                    _legiData[name].positionCount = unclearTotal;
+
+                }
+
+            }
+            console.log(name+":"+_legiData[name].position);
+
+        }
        
 
         //console.log(_data);
         AppStore.emitChange();
+    
          
     });
 

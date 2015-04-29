@@ -4,9 +4,11 @@ var AppActions = require('../../actions/AppActions');
 
 var React = require('react/addons');
 var Records = require('../Records/Records.jsx');
-
+var OverviewWall = require('../OverviewWall/OverviewWall.jsx');
 
 require('./App.css');
+
+var hash = window.location.hash.substring(1); // remove #
 
 function getData(){
   // Change from Object to Array;
@@ -16,12 +18,22 @@ function getData(){
   });
   return legiData;
 }
+function getPosition(){
+  // Change from Object to Array;
+  var data = AppStore.getPosition();
+  var legiData = Object.keys(data).map((value, key)=>{
+      return data[value];
+  });
+  
+  return legiData;
+}
 
 var App = React.createClass({
 
   getInitialState(){
     return {
-      data: []
+      data: [],
+      position: []
     }
   },
   
@@ -42,20 +54,23 @@ var App = React.createClass({
   
   _onChange (){
       this.setState({
-         data: getData()
+         data: getData(),
+         position: getPosition()
       });
 
   },
 
   render () {
-    var { data } = this.state;
-    
+    var { data, position } = this.state;
+    var content = <Records data={data} />;
+    if(hash === 'overview')
+        content = <OverviewWall data={position} />;
     return (
       <div className="App">
         <div className="App-header">
             <div className="App-title">婚姻平權 x 立院表態</div>
         </div>
-        <Records data={data} />
+            {content}
       </div>
     );
   }

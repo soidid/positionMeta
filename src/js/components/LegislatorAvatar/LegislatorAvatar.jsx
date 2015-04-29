@@ -6,7 +6,7 @@ require('./LegislatorAvatar.css');
 var LegislatorAvatar = React.createClass({
   
   render () {
-    var {data} = this.props;
+    var {data, plain} = this.props;
     var imgURL;
 
     try {
@@ -14,15 +14,27 @@ var LegislatorAvatar = React.createClass({
     }catch(e){
       imgURL = require("./images/default.jpg");
     }
-  
-    return (
-      <div className="LegislatorAvatar">
-          <img className="LegislatorAvatar-avatar"
+
+    var result = (
+        <div className="LegislatorAvatar">
+            <img className="LegislatorAvatar-avatar"
+                 src={imgURL} />
+            <div className="LegislatorAvatar-name">{data}</div>
+        </div>);
+
+
+    if(plain){
+
+        result = (
+        <div className="LegislatorAvatar">
+            <img className="LegislatorAvatar-avatarPlain"
                src={imgURL} />
-          <div className="LegislatorAvatar-name">{data}</div>
-      </div>
-          
-    );
+            <div className="LegislatorAvatar-namePlain">{data}</div>
+        </div>);
+
+    }
+  
+    return result;
   }
 });
 

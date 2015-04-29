@@ -61,7 +61,7 @@ var Records = React.createClass({
             if(qText !== "" && qText !== item.name){
               shouldReturn = false;
             }
-            console.log(item.name+": "+shouldReturn);
+            //console.log(item.name+": "+shouldReturn);
             if(shouldReturn){
               return item;
 
@@ -73,7 +73,7 @@ var Records = React.createClass({
 
             entriesCount.all++;
             entriesCount.yearAll++;
-            console.log(entriesCount.all);
+            
             //每一筆 entry
             switch(item.opinion){
               case '贊成':

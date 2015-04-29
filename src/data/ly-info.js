@@ -2,6 +2,12 @@ module.exports = {
   "data":
   [
   {
+    "name": "許忠信",
+    "party": "台灣團結聯盟",
+    "party_eng": "TSU",
+    "caucus": "TSU"
+  },
+  {
     "name": "丁守中",
     "party": "中國國民黨",
     "party_eng": "KMT",
