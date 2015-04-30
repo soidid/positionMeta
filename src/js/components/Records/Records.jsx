@@ -165,7 +165,7 @@ var Records = React.createClass({
         
     return (
         <div className="Records">
-          <div className="Records-title">{subject}是否支持「婚姻平權於本會期立法通過」？</div>
+          <div className="Records-title">{subject}是否支持「儘速修法將同性婚姻合法化」？</div>
           <div className="Records-description">
               在過去四年中，{qText}有 <span className="Records-voteNumbers">{entriesCount.all}</span> 筆相關的立場表達事件：<br/>
               <span className="Records-voteNumbers is-for">{entriesCount.for}</span>  筆贊成；

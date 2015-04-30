@@ -6,6 +6,7 @@ var React = require('react/addons');
 var Records = require('../Records/Records.jsx');
 var OverviewWall = require('../OverviewWall/OverviewWall.jsx');
 var SinglePost = require('../SinglePost/SinglePost.jsx');
+var Profile = require('../Profile/Profile.jsx');
 
 require('./App.css');
 
@@ -45,6 +46,7 @@ var App = React.createClass({
     return {
       data: [],
       position: [],
+      positionObj: {},
       indexedData: {}
     }
   },
@@ -68,26 +70,37 @@ var App = React.createClass({
       this.setState({
          data: getData(),
          position: getPosition(),
+         positionObj: AppStore.getPosition(),
          indexedData: getIndexedData()
       });
 
   },
 
   render () {
-    var { data, position, indexedData } = this.state;
+    var { data, position, positionObj, indexedData } = this.state;
     var content = <Records data={data} />;
+    var head = (
+        <div className="App-header">
+            <div className="App-title">立院表態</div>
+        </div>);
+
     if(hash === 'overview')
         content = <OverviewWall data={position} />;
 
-      console.log(indexedData);
+      
     if(hash === 'post')
         content = <SinglePost data={indexedData} />;
+
+    if(hash === 'profile'){
+        head = "";
+        content = <Profile data={positionObj} />;
+    }
+
     return (
       <div className="App">
-        <div className="App-header">
-            <div className="App-title">婚姻平權 x 立院表態</div>
-        </div>
-            {content}
+          {head}
+          {content}
+          
       </div>
     );
   }

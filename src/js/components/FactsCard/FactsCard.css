@@ -1,0 +1,91 @@
+.FactsCard {
+	max-width: 450px;
+	margin: 30px auto;
+	line-height: 1.6;	
+}
+.FactsCard-menu {
+	text-align: center;
+}
+.FactsCard-menuItem {
+	
+	display: inline-block;
+    padding: 2px 10px;
+    cursor: pointer;
+    
+    text-align: center;
+    //border: 2px solid rgb(240,240,240);
+    font-size: 14px;
+    margin: 2px 2px 4px 2px;
+    background: #AE5C86;
+    width: 30px;
+    text-align: center;
+    vertical-align: bottom;
+    position: relative;
+    
+}
+.FactsCard-menuItemText {
+	position: absolute;
+	bottom: 0;
+	left: 8px;
+	width: 14px;
+}
+.FactsCard-menuItem:hover, .FactsCard-menuItem.is-active {
+    background: rgba(205, 98, 153, 0.98);
+}
+.FactsCard-menuCount {
+}
+
+
+.FactsCard-content {
+	border: 2px solid rgb(53,55,54);
+	background: white;
+	min-height: 200px;
+	padding: 30px 0;
+	box-shadow: 4px 4px 0 0 rgba(0,0,0,0.12);
+
+}
+.FactsCard-mainTitle {
+    font-weight: 800;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.FactsCard-listItem {
+	margin: 10px;
+	cursor: pointer;
+	padding: 10px;
+	border-bottom: 1px dotted gray;
+	display: inline-block;
+
+}
+.FactsCard-listItem:hover {
+	background: rgb(240,240,240);
+}
+
+.FactsCard-opinion {
+	font-weight: 800;
+	display: inline-block;
+	margin: 0 2px;
+}
+.FactsCard-opinion.is-for {
+	color: #3EA869;
+}
+.FactsCard-opinion.is-against {
+	color: #C62F20;
+}
+.FactsCard-opinion.is-unclear {
+	background: gray;
+}
+
+.FactsCard-opinionCount {
+	background: rgb(200,200,200);
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	color: white;
+	display: inline-block;
+	font-size: 14px;
+	vertical-align: top;
+	margin: 0 4px;
+	text-align: center;
+}
