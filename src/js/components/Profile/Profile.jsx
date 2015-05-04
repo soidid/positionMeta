@@ -140,23 +140,24 @@ var Profile = React.createClass({
 
 
     var content = (showMenu) ? (
-        <div>
-
-        </div>
+        <div></div>
         ):(
         <FactsCard menu={issueMenu}
                    data={subData}/>
       );
 
-    var button = (showMenu) ? issueMenuItem :
-       <div className="Profile-button"
-            onClick={this._onToggleMenu}>看所有議題</div>;
+    var button = (showMenu) ? 
+        <div className="Profile-menu">{issueMenuItem}</div> :
+        <div className="Profile-button"
+             onClick={this._onToggleMenu}>←所有議題</div>;
 
     return (
       <div className="Profile">
+          
           <Legislator data="尤美女" />
-            {content}
             {button}
+            {content}
+            
       </div>
           
     );

@@ -46,7 +46,7 @@ var OverviewWall = React.createClass({
     .map((item, key)=>{
 
         var partyClass = "OverviewWall-avatar is-"+item.party_eng;
-        var url = "index.html#profile?name="+item.name;
+        var url = "index.html#records";
 
         return (
           <a className="OverviewWall-item"
@@ -68,7 +68,7 @@ var OverviewWall = React.createClass({
     .map((item, key)=>{
 
         var partyClass = "OverviewWall-avatar is-"+item.party_eng;
-        var url = "index.html#profile?name="+item.name;
+        var url = "index.html#records";
 
         return (
           <a className="OverviewWall-item"
@@ -90,7 +90,7 @@ var OverviewWall = React.createClass({
     .map((item, key)=>{
 
         var partyClass = "OverviewWall-avatar is-"+item.party_eng;
-        var url = "index.html#profile?name="+item.name;
+        var url = "index.html#records";
 
         return (
           <a className="OverviewWall-item"
@@ -136,7 +136,18 @@ var OverviewWall = React.createClass({
     var {title} = this.props;
     return (
       <div>
-      <div className="OverviewWall-title">立法院是否支持「分廠分照」？</div>
+      <div className="OverviewWall-title">
+          <select className="Records-title">
+             <option>婚姻平權</option>
+             <option>勞工</option>
+             <option>核能</option>
+          </select>  
+          <select className="Records-title">
+              <option>儘速修法將同性婚姻合法化</option>
+              <option>每週 40 工時 </option>
+              <option>分廠分照 </option>
+          </select> 
+      </div>
       <div className="OverviewWall">
         
         <div className="OverviewWall-group">

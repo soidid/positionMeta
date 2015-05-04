@@ -13,7 +13,8 @@ var AppBar= React.createClass({
 
     return (
       <div className="AppBar">
-           
+           <a className="AppBar-home"
+              href="index.html">Home</a>
       </div>
           
     );

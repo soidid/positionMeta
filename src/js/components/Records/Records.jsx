@@ -1,6 +1,7 @@
 /** @jsx React.DOM */
 "use strict";
 var React = require('react/addons');
+var Legislator = require("../Legislator/Legislator.jsx");
 var LegislatorAvatar = require("../LegislatorAvatar/LegislatorAvatar.jsx");
 var Icon = require("../Icon/Icon.jsx");
 
@@ -18,8 +19,16 @@ var Records = React.createClass({
 
   getInitialState(){
     return {
-       shouldYearExpand:{}
+       shouldYearExpand:{},
+       currentTab: 'vote'
     }
+  },
+
+  _onSetTab(i, event){
+    this.setState({
+        currentTab: i
+    });
+
   },
 
   _onTogggleYearData(i, event){
@@ -41,7 +50,7 @@ var Records = React.createClass({
     
 
     var {data} = this.props;
-    var {shouldYearExpand} = this.state;
+    var {shouldYearExpand, currentTab} = this.state;
     var classSet = React.addons.classSet;
     
     var entriesCount = {};
@@ -59,7 +68,7 @@ var Records = React.createClass({
         var entries = year.entries
         .filter((item)=>{
             var shouldReturn = true;
-            if(qText !== "" && qText !== item.name){
+            if(item.name !== '尤美女'){
               shouldReturn = false;
             }
             //console.log(item.name+": "+shouldReturn);
@@ -117,11 +126,9 @@ var Records = React.createClass({
                         <span className="Records-star">★ {item.trustVote}</span>  
                       </div>
                       <div className="Records-actionItem">
-                        <a className="Records-more">vote up</a>  
+                        <span className="Records-more">more</span>
                       </div>
-                      <div className="Records-actionItem">
-                        <a className="Records-more">vote down</a>  
-                      </div>
+                      
                     </div>
                     
                 </div>
@@ -141,6 +148,7 @@ var Records = React.createClass({
           toggleText = "";
         
        return (
+
             <div className="Records-year"
                  key={year_index}>
                 <div className="Records-yearHeader"
@@ -161,20 +169,97 @@ var Records = React.createClass({
 
 
     });
+
+    /////////////////////////////////////////////////////////
+    /* 依照票數排序 */
+    ////////////////////////////////////////////////////////
+
     
-    var subject = (qText) ? qText:'立委';
-    // <div className="Records-title">{subject}是否支持「儘速修法將同性婚姻合法化」？</div>  
-    // 
+    var {indexedData} = this.props;
+    var orderByVote = [];
+    for(var key in indexedData){
+        if(indexedData[key].name === '尤美女'){
+          orderByVote.push(indexedData[key]);
+        }
+    }
+    orderByVote.sort(function(a,b){
+      return b.trustVote-a.trustVote;
+    });
+    console.log(orderByVote);
+
+    var records = orderByVote.map((item,key)=>{
+        var link = item.link;
+        var opinionClasses = classSet({
+          "Records-opinion": true,
+          "is-for": item.opinion === '贊成',
+          "is-against": item.opinion === '反對',
+          "is-unclear": item.opinion === '不明確'
+        });
+        var singlePostURL = "#post?q="+item.id;
+
+        return (
+            <div className="Records-entry"
+                 key={key}>
+                <div className="Records-entryTitle">
+                  <LegislatorAvatar data={item.name}/>
+                  <div className={opinionClasses}>{item.opinion}</div>
+                </div>
+                <div className="Records-quote">
+                   {item.quote}
+                </div>
+                <div className="Records-info">
+                    －{item.type}，{item.date}
+                </div>
+                <div className="Records-action">
+                  <div className="Records-actionItem">
+                    <span className="Records-star">★ {item.trustVote}</span>  
+                  </div>
+                  <div className="Records-actionItem">
+                    <span className="Records-more">more</span>
+                  </div>
+                  
+                </div>
+                
+            </div>
+        )
+    })
+
+    var content = (currentTab === 'vote') ? {records} : {year_entries};
+    var tabs = [{title:"依票數",id:"vote"},{title:"時間軸",id:"timeline"}];
+    var tabsItem = tabs.map((item,key)=>{
+      var tabClass = "Records-tab";
+      if(currentTab===item.id){
+        tabClass += " is-active"
+      }
+      var boundClick = this._onSetTab.bind(null, item.id);
+      return (
+        <div className={tabClass}
+             onClick={boundClick}>{item.title}</div>
+      )
+    });
     
     return (
         <div className="Records">
+          
+          <a className="Records-name"
+             href="index.html#profile?name=尤美女"
+             target="_blank"><Legislator data={"尤美女"} /></a>
+
+          <select className="Records-title">
+              <option>儘速修法將同性婚姻合法化</option>
+              <option>每週 40 工時</option>
+              <option>分廠分照  </option>
+          </select> 
+
           <div className="Records-description">
-              在過去四年中，{qText}有 <span className="Records-voteNumbers">{entriesCount.all}</span> 筆相關的立場表達事件：<br/>
+              在過去四年中，尤美女有 <span className="Records-voteNumbers">{entriesCount.all}</span> 筆相關的立場表達事件：<br/>
               <span className="Records-voteNumbers is-for">{entriesCount.for}</span>  筆贊成； 
               <span className="Records-voteNumbers is-against">{entriesCount.against}</span> 筆反對；
               <span className="Records-voteNumbers is-unclear">{entriesCount.unclear}</span> 筆立場不明確。
-          </div>      
-              {year_entries}
+          </div>
+          {tabsItem}
+          {content}
+          <div>看所有議題</div>
         </div>
     );
 

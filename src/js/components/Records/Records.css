@@ -9,11 +9,33 @@
 		max-width: 600px;
 	}
 }
+.Records-name, .Records-name:visited {
+	color: rgb(53,55,54);
+	text-decoration: none;
+}
+.Records-name:hover {
+	color: #6FB4B1;
+}
 .Records-title {
 	font-size: 20px;
 	font-weight: 800;
 	margin: 14px 0 10px 0;
+	border: 1px solid rgb(220,220,220);
+	background: rgb(250,250,250);
+	padding: 20px;
+	cursor: pointer;
 }
+.Records-title:focus {
+	outline: none;
+}
+.Records-tag {
+	background: #6FB4B1;
+	display: inline-block;
+	font-size: 12px;
+	color: white;
+	padding: 4px 10px;
+}
+
 .Records-description {
 	margin-bottom: 30px;
 }
@@ -35,6 +57,14 @@
 	border-radius: 50%;
 	background: #880013;
 
+}
+.Records-back,.Records-back:visited {
+	position: absolute;
+	left: 0;
+	top: 0;
+	cursor: pointer;
+	color: rgb(53,55,54);
+	text-decoration: none;
 }
 .Records-yearTitle {
 	text-align: left;
@@ -189,6 +219,16 @@
 }
 .Records-more:hover {
     color: #038543;
+}
+
+.Records-tab {
+	display: inline-block;
+	margin: 4px;
+	padding: 4px 6px;
+	cursor: pointer;
+}
+.Records-tab.is-active {
+	border-bottom: 3px solid #6FB3B1
 }
 
 

@@ -5,16 +5,11 @@ require('./Icon.css');
 var Icon = React.createClass({
   
   render () {
-    var {
-      icon,
-      className,
-      _handleClick } = this.props;
-
+    var {icon} = this.props;
+    var imgURL = require("./images/"+icon+".svg");
     return (
-      <div
-        className={"Icon " + className}
-        onClick={_handleClick}>
-        <span className={ "fa " + icon}></span>
+      <div>
+         <img src={imgURL} />
       </div>
     );
   }

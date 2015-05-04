@@ -17,7 +17,7 @@ var hash = window.location.hash.substring(1); // remove #
 if(hash.indexOf('?')!==-1){
    hash = hash.split("?")[0];
 }
-console.log(hash);
+
 
 function getData(){
   // Change from Object to Array;
@@ -91,25 +91,36 @@ var App = React.createClass({
 
   render () {
     var { data, position, positionObj, indexedData, subIssue } = this.state;
+    var issueList = ["婚姻平權","勞基法","監督條例","罷免","食品安全","兩稅合一","核能"];
+    var issueListItem = issueList.map((i,k)=>{
+        return (
+            <a className="App-issue"
+               href="index.html#issue"
+               target="_blank">{i}</a>
+        )
+    })
     var content = (
       <div>
-        <Issue subIssue={subIssue}
-               subIssueTitleHander={this._onSetSubIssueTitle}/>
+        {issueListItem}
       </div>);
 
     var head = "";
 
-
+    if(hash === 'issue'){
+      content = (
+        <Issue subIssue={subIssue}
+               subIssueTitleHander={this._onSetSubIssueTitle}/>);
+    }
 
     if(hash === 'records'){
-        content = <Records data={data} />;
-        
+        content = <Records data={data} 
+                           indexedData={indexedData}/>; 
     }
 
     if(hash === 'overview'){
         head = (
         <div className="App-header">
-            <div className="App-title">#食品安全</div>
+            <div className="App-title">立法院</div>
         </div>);
         content = <OverviewWall data={position} title={this.state.subIssueTitle}/>;
     }

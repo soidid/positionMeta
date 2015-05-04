@@ -10,3 +10,11 @@
 	background: #6FB4B1;
 	padding: 10px;
 }
+.AppBar-home, .AppBar-home:visited {
+	position: absolute;
+	left: 10px;
+	top: 8px;
+	color: white;
+	font-weight: 400;
+	text-decoration: none;
+}

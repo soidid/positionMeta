@@ -4,12 +4,16 @@
 .Profile-button {
 	margin-bottom: 50px;
 	cursor: pointer;
+    position: absolute;
+    left: 80px;
 }
 .Profile-button:hover {
 	text-decoration: underline;
 }
 
-
+.Profile-menu {
+    margin-top: 20px;
+}
 .Profile-menuItem {
 	
 	display: inline-block;
