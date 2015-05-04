@@ -17,11 +17,19 @@ var Profile = React.createClass({
   
    getInitialState(){
     return {
+        showMenu: false
     }
   },
+
+  _onToggleMenu(){
+    this.setState({
+        showMenu: !this.state.showMenu
+    });
+  },
+
   render () {
+    var {showMenu} = this.state;
     var name = getName();
-    
     
     var data = this.props.data[name];
     var issueMenu = [
@@ -71,8 +79,29 @@ var Profile = React.createClass({
         }
     ];
 
+    var classSet = React.addons.classSet;
 
-    var sameSexMarrige = {
+    var issueMenuItem = issueMenu.map((item,key)=>{
+        var menuItemStyle = {
+            "height" : item.count*10 + 'px'
+        };
+        
+        var menuItemClasses = classSet({
+            "Profile-menuItem" : true
+        });
+        return (
+          <div className={menuItemClasses}
+               style={menuItemStyle}
+               onClick={this._onToggleMenu}>
+              <div className="Profile-menuItemText">{item.name}
+                  <div className="Profile-menuCount">{item.count}</div>
+              </div>
+          </div>
+        )
+    })
+
+
+    var subData = {
         "name" : "食品安全",
         "facts" : [
             {
@@ -109,13 +138,25 @@ var Profile = React.createClass({
         ]
     };
 
+
+    var content = (showMenu) ? (
+        <div>
+
+        </div>
+        ):(
+        <FactsCard menu={issueMenu}
+                   data={subData}/>
+      );
+
+    var button = (showMenu) ? issueMenuItem :
+       <div className="Profile-button"
+            onClick={this._onToggleMenu}>看所有議題</div>;
+
     return (
       <div className="Profile">
           <Legislator data="尤美女" />
-
-          <FactsCard menu={issueMenu}
-                     data={sameSexMarrige}/>
-         
+            {content}
+            {button}
       </div>
           
     );
