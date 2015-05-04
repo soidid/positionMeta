@@ -46,7 +46,7 @@ var OverviewWall = React.createClass({
     .map((item, key)=>{
 
         var partyClass = "OverviewWall-avatar is-"+item.party_eng;
-        var url = "index.html?q="+item.name;
+        var url = "index.html#profile?name="+item.name;
 
         return (
           <a className="OverviewWall-item"
@@ -68,7 +68,7 @@ var OverviewWall = React.createClass({
     .map((item, key)=>{
 
         var partyClass = "OverviewWall-avatar is-"+item.party_eng;
-        var url = "index.html?q="+item.name;
+        var url = "index.html#profile?name="+item.name;
 
         return (
           <a className="OverviewWall-item"
@@ -90,7 +90,7 @@ var OverviewWall = React.createClass({
     .map((item, key)=>{
 
         var partyClass = "OverviewWall-avatar is-"+item.party_eng;
-        var url = "index.html?q="+item.name;
+        var url = "index.html#profile?name="+item.name;
 
         return (
           <a className="OverviewWall-item"
@@ -126,15 +126,17 @@ var OverviewWall = React.createClass({
 
 
    
+    // <div className="OverviewWall-title">立法院是否支持「婚姻平權於本會期立法通過」？</div>
+    // <div className="OverviewWall-description">根據立法院過去四年的立場表態事件：<br/>
+    //        有 <span className="OverviewWall-numberHighlight">{forLegislators.length}</span> 位立委傾向支持；
+    //        <span className="OverviewWall-numberHighlight">{againstLegislators.length}</span> 位立委傾向反對； 
+    //        <span className="OverviewWall-numberHighlight">{unclearLegislators.length}</span> 位立委表態不明確；
+    //        <span className="OverviewWall-numberHighlight">{noneLegislators.length}</span> 位立委表態沒有表態。</div>
     
+    var {title} = this.props;
     return (
       <div>
-      <div className="OverviewWall-title">立法院是否支持「婚姻平權於本會期立法通過」？</div>
-      <div className="OverviewWall-description">根據立法院過去四年的立場表態事件：<br/>
-           有 <span className="OverviewWall-numberHighlight">{forLegislators.length}</span> 位立委傾向支持；
-           <span className="OverviewWall-numberHighlight">{againstLegislators.length}</span> 位立委傾向反對； 
-           <span className="OverviewWall-numberHighlight">{unclearLegislators.length}</span> 位立委表態不明確；
-           <span className="OverviewWall-numberHighlight">{noneLegislators.length}</span> 位立委表態沒有表態。</div>
+      <div className="OverviewWall-title">立法院是否支持「分廠分照」？</div>
       <div className="OverviewWall">
         
         <div className="OverviewWall-group">

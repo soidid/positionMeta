@@ -21,8 +21,7 @@ var Profile = React.createClass({
   },
   render () {
     var name = getName();
-    if(!this.props.data[name])
-       return <div></div>;
+    
     
     var data = this.props.data[name];
     var issueMenu = [
@@ -44,7 +43,7 @@ var Profile = React.createClass({
         },
         {
           "name":"婚姻平權",
-          "count" : data.positionCount
+          "count" : 1
         },
         {
           "name":"核能",
@@ -74,15 +73,42 @@ var Profile = React.createClass({
 
 
     var sameSexMarrige = {
-        "name" : "婚姻平權",
+        "name" : "食品安全",
         "facts" : [
             {
               "title":"儘速修法將同性婚姻合法化",
-              "opinion": data.position,
-              "opinionCount": data.positionCount
+              "opinion": "贊成",
+              "opinionCount": 12
+            },
+            {
+              "title":"是否自設實驗室",
+              "opinion": "反對",
+              "opinionCount": 2
+            },
+            {
+              "title":"是否分廠分照",
+              "opinion": "反對",
+              "opinionCount": 7
+            },
+            {
+              "title":"是否訂立吹哨者條款",
+              "opinion": "反對",
+              "opinionCount": 8
+            },
+            {
+              "title":"電子發票",
+              "opinion": "贊成",
+              "opinionCount": 8
+            }
+            ,
+            {
+              "title":"是否提高罰鍰",
+              "opinion": "贊成",
+              "opinionCount": 12
             }
         ]
     };
+
     return (
       <div className="Profile">
           <Legislator data="尤美女" />

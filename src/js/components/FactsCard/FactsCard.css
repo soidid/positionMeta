@@ -36,12 +36,15 @@
 }
 
 
-.FactsCard-content {
+.FactsCard-content, .FactsCard-content:visited {
 	border: 2px solid rgb(53,55,54);
 	background: white;
 	min-height: 200px;
 	padding: 30px 0;
 	box-shadow: 4px 4px 0 0 rgba(0,0,0,0.12);
+	display: block;
+	color: rgb(53,55,54);
+	text-decoration: none;
 
 }
 .FactsCard-mainTitle {
@@ -55,7 +58,8 @@
 	cursor: pointer;
 	padding: 10px;
 	border-bottom: 1px dotted gray;
-	display: inline-block;
+	display: block;
+	text-align: left;
 
 }
 .FactsCard-listItem:hover {

@@ -1,12 +1,15 @@
 /** @jsx React.DOM */
 var AppStore = require('../../stores/AppStore');
 var AppActions = require('../../actions/AppActions');
-
 var React = require('react/addons');
+
+var AppBar = require('../AppBar/AppBar.jsx');
 var Records = require('../Records/Records.jsx');
 var OverviewWall = require('../OverviewWall/OverviewWall.jsx');
-var SinglePost = require('../SinglePost/SinglePost.jsx');
+
 var Profile = require('../Profile/Profile.jsx');
+var Issue = require('../Issue/Issue.jsx');
+var LegislatorAvatar = require('../LegislatorAvatar/LegislatorAvatar.jsx');
 
 require('./App.css');
 
@@ -47,7 +50,9 @@ var App = React.createClass({
       data: [],
       position: [],
       positionObj: {},
-      indexedData: {}
+      indexedData: {},
+      subIssue:"",
+      subIssueTitle:""
     }
   },
   
@@ -76,20 +81,42 @@ var App = React.createClass({
 
   },
 
+  _onSetSubIssueTitle(value, event){
+    console.log(value);
+    this.setState({
+      subIssueTitle: value
+    });
+  },
+
+
   render () {
-    var { data, position, positionObj, indexedData } = this.state;
-    var content = <Records data={data} />;
-    var head = (
+    var { data, position, positionObj, indexedData, subIssue } = this.state;
+    var content = (
+      <div>
+        <Issue subIssue={subIssue}
+               subIssueTitleHander={this._onSetSubIssueTitle}/>
+      </div>);
+
+    var head = "";
+
+
+
+    if(hash === 'records'){
+        content = <Records data={data} />;
+        
+    }
+
+    if(hash === 'overview'){
+        head = (
         <div className="App-header">
-            <div className="App-title">立院表態</div>
+            <div className="App-title">#食品安全</div>
         </div>);
-
-    if(hash === 'overview')
-        content = <OverviewWall data={position} />;
-
+        content = <OverviewWall data={position} title={this.state.subIssueTitle}/>;
+    }
       
-    if(hash === 'post')
+    if(hash === 'post'){
         content = <SinglePost data={indexedData} />;
+    }
 
     if(hash === 'profile'){
         head = "";
@@ -98,9 +125,11 @@ var App = React.createClass({
 
     return (
       <div className="App">
+          <AppBar />
+          <div className="App-content">
           {head}
           {content}
-          
+          </div>
       </div>
     );
   }

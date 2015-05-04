@@ -117,9 +117,10 @@ var Records = React.createClass({
                         <span className="Records-star">★ {item.trustVote}</span>  
                       </div>
                       <div className="Records-actionItem">
-                        <a className="Records-more"
-                           href={singlePostURL}
-                           target="_blank">more</a>  
+                        <a className="Records-more">vote up</a>  
+                      </div>
+                      <div className="Records-actionItem">
+                        <a className="Records-more">vote down</a>  
                       </div>
                     </div>
                     
@@ -162,13 +163,14 @@ var Records = React.createClass({
     });
     
     var subject = (qText) ? qText:'立委';
-        
+    // <div className="Records-title">{subject}是否支持「儘速修法將同性婚姻合法化」？</div>  
+    // 
+    
     return (
         <div className="Records">
-          <div className="Records-title">{subject}是否支持「儘速修法將同性婚姻合法化」？</div>
           <div className="Records-description">
               在過去四年中，{qText}有 <span className="Records-voteNumbers">{entriesCount.all}</span> 筆相關的立場表達事件：<br/>
-              <span className="Records-voteNumbers is-for">{entriesCount.for}</span>  筆贊成；
+              <span className="Records-voteNumbers is-for">{entriesCount.for}</span>  筆贊成； 
               <span className="Records-voteNumbers is-against">{entriesCount.against}</span> 筆反對；
               <span className="Records-voteNumbers is-unclear">{entriesCount.unclear}</span> 筆立場不明確。
           </div>      

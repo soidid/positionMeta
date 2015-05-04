@@ -1,0 +1,48 @@
+
+
+.Issue-relatedCount {
+	display: inline-block;
+	vertical-align: top;
+	background: rgb(220,220,220);
+	padding: 4px 10px;
+	border-radius: 20px;
+	font-size: 14px;
+	margin-top: 6px;
+	margin-left: 4px;
+
+}
+.Issue-issueTitle {
+	font-size: 20px;
+	font-weight: 800;
+	padding: 20px;
+}
+.Issue-subIssueTitle {
+	font-weight: 800;
+	font-size: 18px;
+	padding: 10px;
+	text-align: left;
+}
+.Issue-subIssueText {
+	display: inline-block;
+	vertical-align: top;
+	padding-top: 8px;
+	margin-bottom: 4px;
+	font-weight: 800;
+}
+.Issue-subIssueItem, .Issue-subIssueItem:visited {
+	text-align: left;
+	
+	padding: 10px 20px;
+	background: white;
+	margin: 1px 0;
+	box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.12);
+
+	cursor: pointer;
+
+	text-decoration: none;
+	color: rgb(53,55,54);
+	display: block;
+}
+.Issue-subIssueItem:hover {
+	color: #6FB4B1;
+}

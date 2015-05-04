@@ -58,15 +58,17 @@ var FactsCard = React.createClass({
         )
     });
 
-    var content = (currentIssue === '婚姻平權') ?
-            <div className="FactsCard-content">
+    var content = (
+            <a className="FactsCard-content"
+               href="index.html#records"
+                 target="_blank">
               <div className="FactsCard-mainTitle">{data.name}</div>
               <div>{factItems}</div>
-            </div> : "";
+            </a> );
 
     return (
       <div className="FactsCard">
-          <div className="FactsCard-menu">{menuItem}</div>
+          
           {content}
       </div>
           
